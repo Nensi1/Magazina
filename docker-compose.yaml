@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: "3"
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://nensi:password@postgres/tiranatreg
+      NODE_ENV: development
+      PORT: 3000
+      POSTGRES_USER: nensi
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tiranatreg
+      POSTGRES: postgres
+      JWT_KEY: "secret"
+    ports:
+      - "3000:3000"
+    command: npm run dev
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: nensi
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tiranatreg
+
+    

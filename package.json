@@ -1,0 +1,34 @@
+{
+  "name": "magazina",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www -L",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node server/models/seeders/20200422114932-userSample.js"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "express-validator": "^6.4.1",
+    "helmet": "^3.22.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.3",
+    "pg": "^8.0.3",
+    "sequelize": "^5.21.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1"
+  }
+}
