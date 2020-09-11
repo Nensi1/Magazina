@@ -2,30 +2,19 @@ const userModel = require('../../models/index');
 
 const getUser = async (req, res) => {
     try{
-        const { userId } = req.params.userId;
+        // console.log(req.params.userId);
         const user = await userModel.User.findOne({
-          where: { id: postId },
-          include: [
-            {
-              model: models.Comment,
-              as: 'comments',
-              include: [
-               {
-                model: models.User,
-                as: 'author',
-               }
-              ]
-            },
-            {
-              model: models.User,
-              as: 'author'
-            }
-          ]
-        });
-        if (post) {
-          return res.status(200).json({ post });
-        }
-        return res.status(404).send('Post with the specified ID does not exists');
+          where: { "id": req.params.userId },
+           }).then(function(result) {
+          return res.json({
+              "success": 1,
+              "message": "User displayed successfully",
+              "User": result,
+          });
+        }).catch((e)=>{
+          res.status(404).send('User with the specified ID does not exists' + e);
+         });
+
         }
     catch(err){
         res.send('error when getting all users: ' + err)

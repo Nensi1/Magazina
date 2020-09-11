@@ -3,13 +3,14 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
-        nipt: '00000000',
+        nipt: '000000123',
         username : 'Nensi',
-        phone : '0697838291',
-        email : 'nensiahmetbeja@gmail.com',
+        phone : '0697838290',
+        email : 'nensiahmetbej@gmail.com',
+        password : 'testing',
         createdAt : new Date(),
         updatedAt : new Date(),
-        password : 'testing'
+        deletedAt: new Date(),
       }], {});
     },
 

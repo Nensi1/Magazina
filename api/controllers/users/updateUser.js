@@ -1,23 +1,28 @@
 const userModel = require('../../models/index');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const updateUser = async (req, res) => {
     try{
-      const { userId } = req.params.userId;
-      const [ updated ] = await userModel.User.update(
+        bcrypt.hash(req.body.password, saltRounds, function (err, hash) { 
+          const userId = req.params.userId;
+
+        userModel.User.update(
         {
-        nipt: req.body.nipt,
-        username: req.body.username,
-        phone: req.body.phone,
-        email: req.body.email,
-        password: bcrypt(req.body.password)
+        "nipt": req.body.nipt,
+        "username": req.body.username,
+        "phone": req.body.phone,
+        "email": req.body.email,
+        "password": hash
       }, 
       {
         where: { id: userId }
-      }).then( (result) => res.json(result) );
-      if(!updated)
-      {
-        throw new Error('User not found');
-      }
+      }).then( (result) => res.json(result) )
+      .catch((e)=>{
+        res.status(404).send('User with the specified ID does not exists' + e);
+       });
+      });
+      
     }
 
     catch (e) {

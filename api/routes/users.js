@@ -8,11 +8,11 @@ const checkAuth=require('../middlewares/checkAuth');
 
 /* GET users listing. */
 
-router.post('/signup',usersController.createSingleResource);
-router.post('/login',usersController.findByLoginResource);
-router.get('/', checkAuth,usersController.getAllResources);
-router.get('/:userId',usersController.getSingleResource);
-router.delete('/:userId',checkAuth, usersController.deleteSingleResource);
-router.put('/:userId', checkAuth,usersController.updateSingleResource);
+router.post('/', usersController.createSingleResource);
+router.get('/', usersController.getAllResources);
+router.get('/:userId',checkAuth, usersController.getSingleResource);
+router.delete('/:userId', checkAuth, usersController.deleteSingleResource);
+router.put('/:userId', checkAuth, usersController.updateSingleResource);
+router.post('/login', usersController.findByLoginResource);
 
 module.exports = router;

@@ -7,19 +7,14 @@ const deleteUser = async (req, res) => {
         where: {id: userId}
       }).then( 
         result=> {
-        if(result) {
           result.destroy();
           return res.status(200).json({
             message: "User deleted",
           })
-      }
-      else{
-        return res.status(202).json({
-          message: "User can't be found",
-        })
-      }
-    })
-  }
+        }).catch((e)=>{
+          res.status(404).send('User can not be deleted' + e);
+         });
+    }
     catch (e) {
       res.status(201).json({
         message: 'Error when deleting user',

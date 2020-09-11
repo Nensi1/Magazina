@@ -63,4 +63,4 @@ app.use((error, req,res,next)=>{
 module.exports = app;
 
 //docker-compose exec app sh
-
+// -> login -> jwt -> new table products
